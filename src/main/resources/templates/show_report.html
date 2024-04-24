@@ -1,0 +1,32 @@
+<html xmlns:th="htttp://www.thymeleaf.org">
+	<div th:if="${!empList.empty}">
+		<h1 style="color:red;text-align:center">Employees Report</h1>
+		<table border="1" align="center" bgcolor="cyan">
+			<tr style="color: darkred;">
+				<th>Emp No</th><th>Emp Name</th><th>Job Name</th><th>Salary</th><th>Dept No</th><th>Operations</th>
+			</tr>
+			<tr th:each="emp:${empList}" style="color:blue">
+				<td><span th:text="${emp.empno}"/></td>
+				<td><span th:text="${emp.ename}" /></td>
+				<td><span th:text="${emp.job}"/></td>
+				<td><span th:text="${emp.sal}"/></td>
+				<td><span th:text="${emp.deptno}"/></td>
+				<td><a th:href="@{/employee/emp_edit(no=${emp.empno})}" ></a>
+				<a th:href="@{/employee/emp_delete(no=${emp.empno})}" onclick="return confirm('Do you realy want to delete the employee')"></a></td>
+			</tr>
+		</table>
+	</div>
+	
+	<div th:if="${empList.empty}">
+		<h1 style="color:red;text-align: center;">Employees Not Found</h1>
+	</div>
+	
+	<h2 style="color:darkgreen;text-align:center" th:text="${resultMsg}"/>
+	
+	<center>
+		<a th:href="@{/employee/emp_add}">Add Employee</a>
+		<a th:href="@{/employee/}">Home</a>
+	</center>
+	
+</html>
+
